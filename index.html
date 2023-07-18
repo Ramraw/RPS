@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <div id="choices">
+        <button onclick="play('rock')">Rock</button>
+        <button onclick="play('paper')">Paper</button>
+        <button onclick="play('scissors')">Scissors</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        function play(playerChoice) {
+            fetch('/', {
+                method: 'POST',
+                body: playerChoice
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').textContent = data;
+            })
+            .catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
